@@ -7,10 +7,21 @@ require 'directors_database'
 
 def directors_totals(nds)
   result = {}
-  nil
+  row_index = 0
+  while row_index < nds.count do
+    name = nds[row_index][:name]
+    result[name] = gross_for_director(nds[row_index])
+  row_index += 1  
+end 
+result
 end
 
-# Find a way to accumulate the :worldwide_grosses and return that Integer
-# using director_data as input
 def gross_for_director(director_data)
+ director_total = 0 
+ element_index = 0 
+  while element_index < director_data[:movies].count do
+      director_total += director_data[:movies][element_index][:worldwide_gross]
+      element_index += 1 
+    end 
+    director_total
 end
